@@ -1,0 +1,33 @@
+<% include ./partials/header %>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+      <h1 style="text-align: center">Sign Up</h1>
+    </div>
+    <div class="col-md-12">
+      <form action="/register" method="POST" class="form-signin">
+        <label for="inputUsername" class="sr-only">Username</label>
+          <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+          <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+        <label for="inputFirstName" class="sr-only">First Name</label>
+          <input type="text" id="inputFirstName" class="form-control" name="firstName" placeholder="First Name" required>
+        <label for="inputLastName" class="sr-only">Last Name</label>
+          <input type="text" id="inputLastName" class="form-control" name="lastName" placeholder="Last Name" required>
+        <label for="inputEmail" class="sr-only">Email</label>
+          <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email" required>
+        <label for="inputAvatar" class="sr-only">Avatar URL</label>
+          <input type="text" id="inputAvatar" class="form-control" name="avatar" placeholder="Avatar URL">
+        <label for="inputBio" class="sr-only">Bio</label>
+          <textarea id="inputBio" class="form-control" name="bio" rows="5" placeholder="Write a short description of yourself and what you enjoy about camping" required></textarea>
+        <label for="inputAdminCode" class="sr-only">Admin Code</label>
+          <input type="text" id="inputAdminCode" class="form-control" name="adminCode" placeholder="Admin Code">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up!</button>
+      </form>
+      <div class="form-signin">
+        <a href="/campgrounds">Go Back</a>          
+      </div>
+    </div>
+</div>
+
+<% include ./partials/footer %>

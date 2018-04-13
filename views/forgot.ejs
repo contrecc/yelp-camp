@@ -1,0 +1,18 @@
+<% include ./partials/header %>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1>Forgot Password</h1>        
+    </div>
+    <div class="col-md-12">
+    <form action="/forgot" method="POST" class="form-signin">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" autofocus class="form-control">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Reset Password</button>
+    </form>
+    <div class="form-signin">
+        <a href="/campgrounds">Go Back</a>          
+      </div>
+  </div>
+</div>
+<% include ./partials/footer %>

@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h1><%= user.firstName + " " + user.lastName %></h1>
+        <% if(currentUser && user._id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+      <div class = "text-center">
+        <a class = " btn btn-lg btn-default" href = "/users/<%= user._id %>/edit">
+          Edit Profile </a>
+      </div>
+    <% } %>
+    </div>
+    
+    <div class="col-md-12 text-center">
+      <div class="card user-card">
+        <% if(user && user.avatar) { %>
+          <img class="card-img-top" src="<%= user.avatar %>" alt="<%= user.username %>'s Avatar">
+        <% } else { %>
+          <img class="card-img-top" src="/images/blank-profile-picture.png" alt="<%= user.username %>'s Avatar">
+        <% } %>
+      
+      <h3>Bio</h3>
+      <% if(user && user.bio) { %>
+        <p><%= user.bio %></p>
+      <% } else { %>
+        <p><em>No bio submitted yet...</em></p>
+      <% } %>
+      
+       <h3>Campgrounds posted by <%= user.username %>:</h3>
+      <% if(campgrounds.length < 1){ %>
+      <p class="mt-4 ml-2"><em>No campgrounds submitted yet...</em></p>
+      <% } else { %>
+      <ul>
+      <% campgrounds.forEach(function(campground){ %>
+        <li><a href="/campgrounds/<%= campground.id %>"><%= campground.name %></a></li>
+      <% }); %>
+      </ul>
+      <% } %>
+      </div>
+    </div>
+</div>
+  
+<% include ../partials/footer %>

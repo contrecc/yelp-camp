@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1>Contact Us</h1>        
+  </div>
+    
+  <div class="col-md-12">
+    <form action="/contact/send" method="post" id="form" class="form-signin">
+      <label class="sr-only" for="form_name">Name</label>
+        <input type="text" class="form-control" id="form_name" name="name" placeholder="Name" required autofocus data-error="Your Name is Required">
+      <label class="sr-only" for="form_phone">Phone</label>
+        <input type="tel" class="form-control" id="form_phone" name="phone" placeholder="Phone" required data-error="Your Phone Number is Required">
+      <label class="sr-only" for="form_email">Email</label>
+        <input type="email" class="form-control" id="form_email" name="email" placeholder="Email Address" required data-error="Your Email is Required">
+      <label class="sr-only" for="form_message">Message</label>
+        <textarea class="form-control" id="form_message" name="message" placeholder="Enter Message Here" rows="4" required data-error="Please, leave us a message."></textarea>
+            
+      <!-- Insert the code for the reCaptcha check box -->
+      <div class="g-recaptcha" data-sitekey="6LdI51EUAAAAAAdz7ukfCrvo_TgdsWOhxX9MMHhf"></div>
+
+      <button class="btn btn-lg btn-primary btn-block">Send Email</button>
+    </form>
+    <div class="form-signin">
+      <a href="/campgrounds">Go Back</a>
+    </div>
+  </div>
+</div>
+
+<% include ../partials/footer %>

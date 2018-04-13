@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+    <h1>Edit Profile</h1>
+    </div>
+    <div class="col-md-12">
+       <form action="/users/<%= user._id %>?_method=PUT" method="POST" class="form-signin">
+           <label for="email">Email</label>
+           <input class="form-control" type="email" name="email" id="email" value="<%= user.email %>">
+                <label for="avatar">Avatar</label>
+                  <input type="text" name="avatar" id="avatar">
+                <label for="bio">Bio</label>
+                <textarea class="form-control" name="bio" id="bio" rows="5" value="<%= user.bio %>"></textarea>
+                <button class="btn btn-lg btn-primary btn-block">Save Changes</button>
+        </form>
+        <div class="form-signin">
+            <a href="/campgrounds">Go Back</a>
+        </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>
