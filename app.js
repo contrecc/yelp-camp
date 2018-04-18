@@ -21,7 +21,8 @@ var indexRoutes = require("./routes/index");
 var userRoutes = require("./routes/users");
 var contactRoutes = require("./routes/contact");
 
-mongoose.connect("mongodb://localhost/yelp_camp_v12");
+//mongoose.connect("mongodb://localhost/yelp_camp_v12");
+mongoose.connect("mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@ds249269.mlab.com:49269/wdbyelpcamp");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
