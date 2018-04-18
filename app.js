@@ -22,7 +22,7 @@ var userRoutes = require("./routes/users");
 var contactRoutes = require("./routes/contact");
 
 mongoose.connect(process.env.DATABASEURL);
-//mongoose.connect("mongodb://" + process.env.DB_USER + ":" + process.env.DB_PASSWORD + "@ds249269.mlab.com:49269/wdbyelpcamp");
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -34,7 +34,7 @@ app.locals.moment = require("moment");
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
-  secret: "I like elephants",
+  secret: process.env.PASSPORT_SECRET,
   resave: false,
   saveUninitialized: false
 }));

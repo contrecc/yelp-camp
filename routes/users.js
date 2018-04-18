@@ -10,7 +10,7 @@ var Campground = require("../models/campground");
 router.get("/:id", function(req, res){
   User.findById(req.params.id, function(err, foundUser){
     if(err || !foundUser){
-      req.flash("error", "Something went wrong.");
+      req.flash("error", "Something went wrong. No user found.");
       return res.redirect("/");
     }
     Campground.find().where('author.id').equals(foundUser._id).exec(function(err, campgrounds){
