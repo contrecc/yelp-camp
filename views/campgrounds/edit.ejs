@@ -1,25 +1,28 @@
 <% include ../partials/header %>
   <div class="row justify-content-center">
     <div class="col-md-12 text-center">
-      <h1>Edit <%= campground.name %></h1>
+      <h1>Edit
+        <%= campground.name %>
+      </h1>
     </div>
     <div class="col-xs-12 col-md-6 col-lg-4">
       <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-          <label for="name">Name</label>
-          <input class="form-control" type="text" name="campground[name]" id="name" value="<%= campground.name %>">
-          <label for="price">Price</label>
-          <input class="form-control" type="number" name="campground[price]" id="price" value="<%= campground.price %>" min="0.01" step="0.01">
-          <label for="image">Image</label>
-          <input class="form-control" type="file" name="campground[image]" id="image" accept="image/*" value="<%= campground.image %>" required>
-          <label for="description">Description</label>
-          <input class="form-control" type="text" name="campground[description]" id="description" value="<%= campground.description %>">
-          <label for="location">Location</label>
-          <input class="form-control" type="text" name="campground[location]" id="location" value="<%= campground.location %>">
-          <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+        <label for="name">Name</label>
+        <input class="form-control" type="text" name="campground[name]" id="name" value="<%= campground.name %>">
+        <label for="price">Price</label>
+        <input class="form-control" type="number" name="campground[price]" id="price" value="<%= campground.price %>" min="0.01"
+          step="0.01">
+        <label for="image">Image</label>
+        <input class="form-control" type="file" name="campground[image]" id="image" accept="image/*" value="<%= campground.image %>">
+        <label for="description">Description</label>
+        <input class="form-control" type="text" name="campground[description]" id="description" value="<%= campground.description %>">
+        <label for="location">Location</label>
+        <input class="form-control" type="text" name="campground[location]" id="location" value="<%= campground.location %>">
+        <button class="btn btn-lg btn-primary btn-block">Submit!</button>
       </form>
       <a href="/campgrounds">Go Back</a>
     </div>
-    
-    
+
+
   </div>
-<% include ../partials/footer %>
+  <% include ../partials/footer %>

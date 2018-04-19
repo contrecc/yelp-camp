@@ -12,7 +12,7 @@ var User = require("./models/user");
 var seedDB = require("./seeds");
 
 // Use dotenv for ENV variables
-require('dotenv').config();
+require("dotenv").config();
 
 //requring routes
 var commentRoutes = require("./routes/comments");
@@ -23,7 +23,7 @@ var contactRoutes = require("./routes/contact");
 
 mongoose.connect(process.env.DATABASEURL);
 
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 //method-override is needed for the update route
@@ -33,11 +33,13 @@ app.locals.moment = require("moment");
 // seedDB(); // seed the database
 
 // PASSPORT CONFIGURATION
-app.use(require("express-session")({
-  secret: process.env.PASSPORT_SECRET,
-  resave: false,
-  saveUninitialized: false
-}));
+app.use(
+  require("express-session")({
+    secret: process.env.PASSPORT_SECRET,
+    resave: false,
+    saveUninitialized: false
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -45,7 +47,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Send currentUser data to all templates
-app.use(function(req, res, next){
+app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.error = req.flash("error");
   res.locals.success = req.flash("success");
@@ -58,6 +60,6 @@ app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/users", userRoutes);
 app.use("/contact", contactRoutes);
 
-app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("YelpCamp server has started!");
+app.listen(process.env.PORT, process.env.IP, function() {
+  console.log("YelpCamp server has started!");
 });
