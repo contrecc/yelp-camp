@@ -7,6 +7,7 @@ var middleware = require("../middleware");
 var async = require("async");
 var nodemailer = require("nodemailer");
 var crypto = require("crypto");
+var request = require("request");
 
 // Root Route
 router.get("/", function(req, res) {
@@ -24,22 +25,45 @@ router.get("/register", function(req, res) {
 
 // handle sign up logic
 router.post("/register", function(req, res) {
-  var newUser = new User({
-    username: req.body.username,
-    email: req.body.email
-  });
-  // check if the user has entered the correct adminCode
-  if (req.body.adminCode === process.env.ADMIN_CODE) {
-    newUser.isAdmin = true;
+  const captcha = req.body["g-recaptcha-response"];
+  if (!captcha) {
+    console.log(req.body);
+    req.flash("error", "Please select captcha");
+    return res.redirect("/register");
   }
-  User.register(newUser, req.body.password, function(err, user) {
-    if (err) {
-      req.flash("error", err.message);
-      return res.render("register");
+  //secret key
+  const secretKey = process.env.CAPTCHA;
+  //verify URL
+  const verifyURL = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${captcha}&remoteip=${
+    req.connection.remoteAddress
+  }`;
+  //make request to verify URL
+  request.get(verifyURL, function(err, response, body) {
+    //if not successful
+    if (body.success !== undefined && !body.success) {
+      req.flash("error", "Captcha failed");
+      return res.redirect("/register");
     }
-    passport.authenticate("local")(req, res, function() {
-      req.flash("success", "Welcome to YelpCamp, " + user.username);
-      res.redirect("/campgrounds");
+
+    var newUser = new User({
+      username: req.body.username,
+      email: req.body.email
+    });
+
+    // check if the user has entered the correct adminCode
+    if (req.body.adminCode === process.env.ADMIN_CODE) {
+      newUser.isAdmin = true;
+    }
+
+    User.register(newUser, req.body.password, function(err, user) {
+      if (err) {
+        req.flash("error", err.message);
+        return res.render("register");
+      }
+      passport.authenticate("local")(req, res, function() {
+        req.flash("success", "Welcome to YelpCamp, " + user.username);
+        res.redirect("/campgrounds");
+      });
     });
   });
 });
