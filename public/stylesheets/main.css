@@ -38,7 +38,7 @@ html {
 }
 
 body {
-   /* Margin bottom by footer height */
+  /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
 
@@ -53,14 +53,6 @@ body {
 
 .container .text-muted {
   margin: 20px 0;
-}
-
-.thumbnail img {
-  width: 100%;
-}
-
-.thumbnail {
-  padding: 0;
 }
 
 .delete-form {
@@ -81,4 +73,10 @@ body {
 
 ul {
   list-style: none;
+}
+
+.card-img-top.show-page {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
 }
