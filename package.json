@@ -10,7 +10,7 @@
   "author": "Colin Contreary",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.6.0",
+    "async": "^2.6.4",
     "body-parser": "^1.18.2",
     "cloudinary": "^1.11.0",
     "connect-flash": "^0.1.1",
